@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engrenajoso | Jogo</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111923;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #192532;
+      padding: 15px max(4%, calc((100% - 1440px) / 2));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img {
+      width: 180px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+      border-radius: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffb52e;
+    }
+
+    /* FUNDO PRINCIPAL FULL HD */
+    .hero {
+      min-height: calc(100vh - 90px);
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      background-image:
+        linear-gradient(
+          rgba(10, 18, 28, 0.65),
+          rgba(10, 18, 28, 0.75)
+        ),
+        url("img/fundo.jpeg");
+
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 80px);
+      line-height: 1.1;
+      color: #ffb52e;
+      margin-bottom: 25px;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: clamp(17px, 1.3vw, 22px);
+      margin-bottom: 35px;
+    }
+
+    /* BOTÕES UM ABAIXO DO OUTRO */
+    .hero-botoes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .botao {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 240px;
+      min-height: 55px;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .botao-conhecer {
+      background: #ffb52e;
+      color: #171717;
+    }
+
+    .botao-jogar {
+      background: #2dba79;
+      color: #ffffff;
+    }
+
+    .botao:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.12);
+    }
+
+    /* SEÇÕES */
+    section {
+      padding: 85px 5%;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: clamp(28px, 2.5vw, 40px);
+      color: #ffb52e;
+      margin-bottom: 25px;
+    }
+
+    .sobre p {
+      max-width: 900px;
+      margin: 0 auto 15px;
+      font-size: 18px;
+    }
+
+    /* CARDS DE MECÂNICAS */
+.cards {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 350px));
+  justify-content: center;
+  gap: 24px;
+}
+
+    .card {
+      background: #223142;
+      border-radius: 14px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-conteudo {
+      padding: 24px;
+    }
+
+    .card h3 {
+      color: #ffb52e;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 16px;
+      color: #d7e0ea;
+    }
+
+    .equipe {
+      background: #192532;
+    }
+
+    .equipe p {
+      max-width: 800px;
+      margin: 0 auto 12px;
+      font-size: 18px;
+    }
+
+    footer {
+      background: #0b1118;
+      padding: 30px;
+      text-align: center;
+      color: #aab4bf;
+    }
+
+    /* TELAS MENORES */
+    @media (max-width: 1100px) {
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 70px 6%;
+      }
+
+      section {
+        padding: 55px 6%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
+      .botao {
+        width: 100%;
+        max-width: 290px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="img/logo.jpeg" alt="Logo Engrenajoso">
+    </div>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#mecanicas">Mecânicas</a>
+      <a href="#equipe">Equipe</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+
+        <h1>ENGRENAJOSO</h1>
+
+        <p>
+          Monte robôs, conecte fios e atenda clientes
+          em uma oficina cheia de desafios mecânicos
+          e tecnológicos.
+        </p>
+
+        <div class="hero-botoes">
+          <a href="#sobre" class="botao botao-conhecer">
+            Conhecer o jogo
+          </a>
+
+          <a
+            href="https://loborvo.itch.io/engrenajoso"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="botao botao-jogar"
+          >
+            Jogar o Jogo
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+      <h2>Sobre o jogo</h2>
+
+      <p>
+        Engrenajoso é um projeto acadêmico desenvolvido
+        para o PI do 4º Semestre, onde o jogador deve montar robôs,
+        interagir com peças mecânicas e resolver desafios
+        dentro de uma oficina.
+      </p>
+
+      <p>
+        O jogo mistura montagem, lógica e interação
+        com clientes, criando uma experiência
+        divertida e dinâmica.
+      </p>
+    </section>
+
+    <section id="mecanicas">
+      <h2>Mecânicas do jogo</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <img src="img/montagem.jpeg" alt="Montagem de peças">
+          <div class="card-conteudo">
+            <h3>Montagem</h3>
+            <p>
+              Encaixe as peças e faça combinações
+              para montar os robôs da maneira certa.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/fios.jpeg" alt="Sistema de fios">
+          <div class="card-conteudo">
+            <h3>Fios</h3>
+            <p>
+              Resolva desafios conectando os fios
+              corretamente para concluir a montagem.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/clientes.jpeg" alt="Clientes do jogo">
+          <div class="card-conteudo">
+            <h3>Clientes</h3>
+            <p>
+              Atenda e dialogue com clientes
+              de vários tipos.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="equipe" id="equipe">
+      <h2>Equipe de desenvolvimento</h2>
+
+      <p>
+        PI 4º Semestre
+      </p>
+
+      <p>
+        Andrey Grava, Daniel Lazaro, Giovanni Piemote, Tiago Rodrigues, Murilo Almeida, 
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Engrenajoso | Projeto acadêmico</p>
+  </footer>
+
+</body>
+</html>
